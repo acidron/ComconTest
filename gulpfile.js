@@ -6,7 +6,7 @@ var gulp   = require('gulp'),
 var browserSync = null;
 
 gulp.task("js", function() {
-	var stream = gulp.src(["bower_components/angularjs/angular.min.js", "source/js/*.js"])
+	var stream = gulp.src(["bower_components/angularjs/angular.min.js", "bower_components/lodash/lodash.min.js", "source/js/*.js"])
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest("build/"));
 	return stream;
