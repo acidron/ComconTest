@@ -36,8 +36,8 @@ App.factory('API', ['$q', '$timeout', function($q, $timeout) {
 					data.push({
 						marital: generateMaritalState(),
 						car: generateCar(),
-						latitude: 40,
-						longitude: 55
+						latitude: _.random(20,60),
+						longitude: _.random(20,60)
 					});
 				}
 				deferred.resolve(data);
