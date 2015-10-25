@@ -1,0 +1,17 @@
+{
+  "name": "ComconTest",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-concat": "latest",
+    "browser-sync": "latest"
+  },
+  "scripts": {
+    "dev": "gulp watch"
+  },
+  "dependencies": {
+    "browser-sync": "^2.9.11",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jade": "^1.1.0"
+  }
+}
