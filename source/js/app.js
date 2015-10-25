@@ -90,24 +90,24 @@ App.directive('popup', ['API', function(API) {
 			element.css({display: "none"});
 			scope.cursor = 0;
 			scope.loadData = function(cursor) {
-        		scope.loading = true;
-        		scope.cursor = cursor;
+				scope.loading = true;
+				scope.cursor = cursor;
 				API.getListData(cursor, scope.paramsForFetchingData.genre, scope.paramsForFetchingData.edu).then(function(resolvedData) {
-            		scope.loading = false;
+					scope.loading = false;
 					scope.data = resolvedData;
-            	});
-        	};
-            scope.api = {
-                show: function(paramsForFetchingData) {
-                	scope.paramsForFetchingData = paramsForFetchingData;
-                	element.css({display: "block"});
-                	scope.loadData(0);
-                },
-                close: function() {
-                	scope.data = [];
-                	element.css({display: "none"});
-                }
-            };
+				});
+			};
+			scope.api = {
+				show: function(paramsForFetchingData) {
+					scope.paramsForFetchingData = paramsForFetchingData;
+					element.css({display: "block"});
+					scope.loadData(0);
+				},
+				close: function() {
+					scope.data = [];
+					element.css({display: "none"});
+				}
+			};
 		}
 	}
 }]);
