@@ -6,7 +6,12 @@ var gulp   = require('gulp'),
 var browserSync = null;
 
 gulp.task("js", function() {
-	var stream = gulp.src(["bower_components/angularjs/angular.min.js", "bower_components/lodash/lodash.min.js", "source/js/*.js"])
+	var stream = gulp.src([
+		"bower_components/angularjs/angular.min.js", 
+		"bower_components/lodash/lodash.min.js", 
+		"source/js/*.js",
+		"!source/js/*.test.js"
+	])
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest("build/"));
 	return stream;
@@ -17,9 +22,12 @@ gulp.task('js-watch', ['js'], function() {
 })
 
 gulp.task("css", function() {
-	var stream = gulp.src("bower_components/bootstrap-css/css/bootstrap.min.css")
+	var stream = gulp.src(["bower_components/bootstrap-css/css/bootstrap.min.css", "source/css/*.css"])
 		.pipe(concat('styles.css'))
 		.pipe(gulp.dest("build/"));
+	if (browserSync) {
+		stream.pipe(browserSync.stream())
+	}
 	return stream;
 });
 
@@ -56,6 +64,7 @@ gulp.task("watch", ["js", "css", "html"], function() {
     });
 	gulp.watch("source/js/*.js", ["js-watch"]);
 	gulp.watch("source/html/*.jade", ["html-watch"]);
+	gulp.watch("source/css/*.css", ["css"]);
 });
 
 gulp.task('default', [ "watch"]);

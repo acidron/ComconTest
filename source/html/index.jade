@@ -1,0 +1,65 @@
+doctype html
+html(ng-app="ComconTest")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="initial-scale = 1.0,maximum-scale = 1.0")
+		link(rel="stylesheet", href="styles.css")
+		script(src="app.js")
+		script(src="https://maps.googleapis.com/maps/api/js")
+	body
+		.container(ng-controller="TableCtrl")
+			h1 Comcon test
+
+			div(ng-if="table == null")
+				.alert.alert-success Data loading...
+
+			table.table.maindata(ng-if="table != null")
+				thead
+					tr
+						th
+						th Среднее
+						th Высшее
+						th Ученая степень
+				tbody
+					tr
+						td Мужчины
+						td(ng-repeat = "item in table.man"): a(ng-click = "showList('man', item.edu)") {{item.q}}
+					tr
+						td Женщины
+						td(ng-repeat = "item in table.woman"): a(ng-click= "showList('woman', item.edu)") {{item.q}}
+
+			script(type="text/ng-template" id="popupTpl.html")
+				.popup
+					.loading(ng-if="loading")
+						.alert.alert-success data loading...
+
+					div(ng-if="!loading || data.length > 0")
+						table.table
+							thead
+								tr
+									th Marital state
+									th Car
+							tbody
+								tr(ng-repeat="person in data")
+									td: select(ng-model="person.marital")
+										option single
+										option married
+										option divorced
+									td: input(type="text", ng-model="person.car")
+						
+						#map 
+							h6 Coords for map
+							span.badge(ng-repeat="person in data") {{person.latitude}} - {{person.longitude}}
+
+						nav.text-center
+							ul.pagination
+								li(ng-if="cursor > 0", ng-click="loadData(cursor - 1)"): a &laquo;
+								- for (var i = 0; i < 5; i++) {
+									- var  classstr = "{active: cursor == " + (i) + "}";
+									li(ng-class=classstr): a(ng-click="loadData(" + i + ")")= i + 1
+								- }
+								li(ng-if="cursor < 5", ng-click="loadData(cursor + 1)"): a &raquo;
+
+					button.btn.btn-primary(ng-click="api.close()") Close
+
+			popup(api="popupApi")

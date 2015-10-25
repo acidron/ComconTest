@@ -6,7 +6,8 @@
     "browser-sync": "latest"
   },
   "scripts": {
-    "dev": "gulp watch"
+    "dev": "gulp watch",
+    "test": "karma start karma.conf.js"
   },
   "dependencies": {
     "browser-sync": "^2.9.11",
