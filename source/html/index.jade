@@ -15,8 +15,11 @@ html(ng-app="ComconTest")
 
 			table.table.maindata(ng-if="table != null")
 				thead
-					tr
+					tr(class="commonheader")
 						th
+						th(colspan="3", class="text-center") Образование
+					tr
+						th 
 						th Среднее
 						th Высшее
 						th Ученая степень
