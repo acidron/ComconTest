@@ -17,18 +17,18 @@ html(ng-app="ComconTest")
 				thead
 					tr(class="commonheader")
 						th
-						th(colspan="3", class="text-center") Образование
+						th(colspan="3", class="text-center") Education
 					tr
 						th 
-						th Среднее
-						th Высшее
-						th Ученая степень
+						th Secondary
+						th Higher
+						th Degree
 				tbody
 					tr
-						td Мужчины
+						td Men
 						td(ng-repeat = "item in table.man"): a(ng-click = "showList('man', item.edu)") {{item.q}}
 					tr
-						td Женщины
+						td Women
 						td(ng-repeat = "item in table.woman"): a(ng-click= "showList('woman', item.edu)") {{item.q}}
 
 			script(type="text/ng-template" id="popupTpl.html")
